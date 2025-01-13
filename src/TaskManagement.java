@@ -6,9 +6,6 @@ public class TaskManagement {
     private static int countTasks;
     private static int countCompletedTasks;
     private static int countPendingTasks;
-    private static int countHighPriority;
-    private static int countMediumPriority;
-    private static int countEasyPriority;
 
     public TaskManagement(ArrayList<TaskInfo> taskInfoList){
         this.taskInfoList = taskInfoList;
@@ -16,11 +13,11 @@ public class TaskManagement {
 
     public void updateStatus(int id){
         for(TaskInfo taskInfo : taskInfoList) {
-            if (taskInfo.getStatus().equalsIgnoreCase("Pending")) {
+            if (taskInfo.getStatus().equalsIgnoreCase("Pending") && id == taskInfo.getId()) {
                 taskInfo.setStatus("Completed");
                 taskInfo.getCompletedList().add(taskInfo.getId());
                 taskInfo.getPendingList().remove((Integer) taskInfo.getId());
-            }else if(taskInfo.getStatus().equalsIgnoreCase("Completed")) {
+            }else if(taskInfo.getStatus().equalsIgnoreCase("Completed") && id == taskInfo.getId()) {
                 taskInfo.setStatus("Pending");
                 taskInfo.getCompletedList().remove((Integer) taskInfo.getId());
                 taskInfo.getPendingList().add(taskInfo.getId());
